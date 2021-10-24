@@ -1,0 +1,70 @@
+<form (ngSubmit)="myForm.valid && onSubmit()" #myForm="ngForm">
+  <div>
+    Form submitted ? {{ myForm.submitted }} Form valid ? {{ myForm.valid }} Form
+    invalid ? {{ myForm.valid }}
+  </div>
+
+  <div>
+    <label for="textOrder"> title </label>
+    <input
+      name="titleOrder"
+      [(ngModel)]="model.title"
+      type="text"
+      #title="ngModel"
+      required
+      maxlength="5"
+    />
+  </div>
+
+  <div *ngIf="title.errors">
+    <span *ngIf="title.errors?.required">Le titre est requis</span>
+    <span *ngIf="title.errors?.maxlength"> the maximum length in 5 </span>
+  </div>
+
+  <div>
+    <label for="quantityOrder"> quantity </label>
+    <input name="quadntityOrder" [(ngModel)]="model.quantity" type="number" />
+  </div>
+
+  <div>
+    <label for="dateOrder"> date </label>
+    <div>
+      <div *ngIf="quantity.errors">
+        <span *ngIf="quantity.errors?.required"></span>
+      </div>
+
+      <input
+        type="date"
+        [(ngModel)]="model.date"
+        #quantity="ngModel"
+        name="DateOrder"
+        #date="ngModel"
+        required
+      />
+    </div>
+
+    <div *ngIf="date.errors">
+      <span *ngIf="date.errors?.required"> please enter a date</span>
+    </div>
+
+    <label for="contactOrder"> Contact </label>
+    <input
+      type="text"
+      [(ngModel)]="model.contact"
+      name="contactOrder"
+      type="text"
+      #contact ="ngModel"
+      minlength="5"
+      required
+    />
+  </div>
+
+  <div *ngIf="contact.errors">
+    <span *ngIf="contact.errors?.required"> please enter a description</span>
+    <span *ngIf="contact.errors?.minlength"> please enter at least 5characters</span>
+    <span *ngIf="contact.errors?.maxlength"> not more than 10 characters</span>
+  </div>
+
+  <button type="submit">save</button>
+  <button type="reset">reset</button>
+</form>

@@ -1,0 +1,76 @@
+<form #signUp="ngForm" (ngSubmit)="signUp.valid && onSubmit()">
+  <div>
+    <label for="firstnameInput"> First name</label>
+    <input
+      type="text"
+      name="firstnameInput"
+      [(ngModel)]="model.firstName"
+      required
+      minlength="3"
+      maxlength="15"
+      #firstName="ngModel"
+    />
+  </div>
+  <div>
+    <span *ngIf="firstName.touched && firstName.errors?.required"> Le prénom est requis</span>
+    <span *ngIf="firstName.errors?.minlength">
+      Le prénom doit comporter au moins 3 caractères</span
+    >
+    <span *ngIf="firstName.errors?.maxlength">
+      Le prénom ne doit pas dépasser 15 caractères</span
+    >
+  </div>
+  <div>
+    <label for="lastNameInput">Last name </label>
+    <input
+      type="text"
+      name="lastNameInput"
+      [(ngModel)]="model.lastName"
+      required
+      minlength="3"
+      maxlength="15"
+      #lastName="ngModel"
+    />
+  </div>
+  <div>
+    <span *ngIf="lastName.touched && lastName.errors?.required"> Le nom est requis</span>
+    <span *ngIf="lastName.errors?.minlength">
+      Le nom doit comporter au moins 3 caractères
+    </span>
+    <span *ngIf="lastName.errors?.maxlength">
+      Le nom ne doit pas dépasser 15 caractères</span
+    >
+  </div>
+  <div>
+    <label for="emailInput"> email</label>
+    <input
+      type="email"
+      name="emailInput"
+      [(ngModel)]="model.email"
+      #email="ngModel"
+      required
+      email
+    />
+  </div>
+  <div>
+    <span *ngIf="email.touched && email.errors?.required"> L'email est requis </span>
+    <span *ngIf="email.errors?.email"> L'email est invalide </span>
+  </div>
+  <div>
+    <label for="passwordInput"> password</label>
+    <input
+      type="password"
+      name="passwordInput"
+      [(ngModel)]="model.password"
+      #password="ngModel"
+      required
+      password
+    />
+  </div>
+  <div>
+      <span *ngIf="password.touched && password.errors?.required"> Le mot de passe est requis </span>
+  </div>
+  <div>
+    <button type="submit">go !</button>
+  </div>
+</form>
